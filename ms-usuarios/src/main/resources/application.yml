@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ms-usuariost
+  datasource:
+    url: jdbc:mysql://mysql8:3306/ms_usuarios?serverTimezone=America/Bogota
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+
+server:
+  port: 8001
+
+logging:
+  file:
+    path: /app/logs
+  level:
+    org:
+      hibernate:
+        SQL: debug
