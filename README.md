@@ -10,5 +10,5 @@
       SQL_DATABASE=ms_usuarios -v data-mysql:/var/lib/mysql mysql:8
     * docker run -d -p 5532:5432 --name postgres14 --network spring -e POSTGRES_PASSWORD=123456 -e POS
        TGRES_DB=ms_cursos -v data-postgres:/var/lib/postgresql/data postgres:14-alpine
-    * docker run -d -p 8002:8002 --rm --name ms-cursos --network spring cursos
-    * docker run -d -p 8001:8001 --rm --name ms-usuarios --network spring usuarios
+    * docker run -p 8002:8002 --env-file .\ms-cursos\.env --rm -d --name ms-cursos --network spring cursos
+    * docker run -p 8001:8001 --env-file .\ms-usuarios\.env --rm -d --name ms-usuarios --network spring usuarios

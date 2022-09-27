@@ -2,9 +2,9 @@ spring:
   application:
     name: ms-cursos
   datasource:
-    url: jdbc:postgresql://postgres14:5432/ms_cursos
-    username: postgres
-    password: 123456
+    url: jdbc:postgresql://${DB_HOST:postgres14:5432}/${DB_DATABASE:ms_cursos}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
@@ -16,10 +16,13 @@ spring:
             non_contextual_creation: true
 
 server:
-  port: 8002
+  port: ${PORT:8002}
 
 logging:
   level:
     org:
       hibernate:
         SQL: debug
+
+ms-usuarios:
+  url: ${USUARIOS_URL:ms-usuarios:8001}
