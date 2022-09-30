@@ -15,7 +15,7 @@
 
 ## Usando Docker Compose
 
-### Comandos para iniciar y detener contenedores o services
+### Comandos para iniciar y detener contenedores o services y construir images
 
-1. Iniciar: docker-compose up
+1. Iniciar: docker-compose up -d --build
 2. Detener y eliminar: docker-compose down
