@@ -12,3 +12,10 @@
        TGRES_DB=ms_cursos -v data-postgres:/var/lib/postgresql/data postgres:14-alpine
     * docker run -p 8002:8002 --env-file .\ms-cursos\.env --rm -d --name ms-cursos --network spring cursos
     * docker run -p 8001:8001 --env-file .\ms-usuarios\.env --rm -d --name ms-usuarios --network spring usuarios
+
+## Usando Docker Compose
+
+### Comandos para iniciar y detener contenedores o services
+
+1. Iniciar: docker-compose up
+2. Detener y eliminar: docker-compose down
