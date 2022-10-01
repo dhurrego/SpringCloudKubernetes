@@ -26,9 +26,10 @@ services:
       - "spring"
   ms-usuarios:
     container_name: ms-usuarios
-    build:
-      context: ./
-      dockerfile: ./ms-usuarios/Dockerfile
+    image: dhurrego/usuarios:latest
+#    build:
+#      context: ./
+#      dockerfile: ./ms-usuarios/Dockerfile
     ports:
       - "8001:8001"
     env_file: ./ms-usuarios/.env
@@ -39,9 +40,10 @@ services:
     restart: always
   ms-cursos:
     container_name: ms-cursos
-    build:
-      context: ./
-      dockerfile: ./ms-usuarios/Dockerfile
+    image: dhurrego/cursos:latest
+#    build:
+#      context: ./
+#      dockerfile: ./ms-cursos/Dockerfile
     ports:
       - "8002:8002"
     env_file: ./ms-cursos/.env
