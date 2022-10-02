@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  postgres14:
+    container_name: postgres14
+    image: postgres:14-alpine
+    ports:
+      - "5532:5432"
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: ms_cursos
+    volumes:
+      - "data-postgres:/var/lib/postgresql/data"
+    networks:
+      - "spring"
+  ms-cursos:
+    container_name: ms-cursos
+    image: dhurrego/cursos:latest
+#    build:
+#      context: ./
+#      dockerfile: ./ms-cursos/Dockerfile
+    ports:
+      - "8002:8002"
+#    env_file: ./ms-cursos/.env
+    environment:
+      PORT: 8002
+      DB_HOST: postgres14:5432
+      DB_DATABASE: ms_cursos
+      DB_USERNAME: postgres
+      DB_PASSWORD: 123456
+      USUARIOS_URL: ec2-35-174-15-189.compute-1.amazonaws.com:8001
+    networks:
+      - "spring"
+    depends_on:
+      - postgres14
+    restart: always
+volumes:
+  data-postgres:
+    name: data-postgres
+networks:
+  spring:
+    name: spring
