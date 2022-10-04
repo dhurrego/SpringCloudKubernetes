@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-cursos
+  template:
+    metadata:
+      labels:
+        app: ms-cursos
+    spec:
+      containers:
+        - name: cursos
+          image: dhurrego/cursos:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8002
+          env:
+            - name: PORT
+              value: "8002"
+            - name: DB_HOST
+              value: "postgres14:5432"
+            - name: DB_DATABASE
+              value: "ms_cursos"
+            - name: DB_USERNAME
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "123456"
+            - name: USUARIOS_URL
+              value: "ms-usuarios:8001"
