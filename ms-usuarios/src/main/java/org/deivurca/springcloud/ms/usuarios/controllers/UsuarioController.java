@@ -3,6 +3,8 @@ package org.deivurca.springcloud.ms.usuarios.controllers;
 import org.deivurca.springcloud.ms.usuarios.models.entity.Usuario;
 import org.deivurca.springcloud.ms.usuarios.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,9 +19,19 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service;
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @GetMapping("/crash")
+    public void crash() {
+        ((ConfigurableApplicationContext) applicationContext).close();
+    }
+
     @GetMapping
-    public ResponseEntity<List<Usuario>> listar() {
-        return ResponseEntity.ok(service.listarTodo());
+    public ResponseEntity<Map<String, List<Usuario>>> listar() {
+        return ResponseEntity.ok(
+                Collections.singletonMap("usuarios", service.listarTodo())
+        );
     }
 
     @GetMapping("/{id}")
