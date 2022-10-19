@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ms-cursos
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ms-cursos
@@ -20,14 +20,32 @@ spec:
             - containerPort: 8002
           env:
             - name: PORT
-              value: "8002"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: port
             - name: DB_HOST
-              value: "postgres14:5432"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: db_host
             - name: DB_DATABASE
-              value: "ms_cursos"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: db_database
             - name: DB_USERNAME
-              value: "postgres"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: db_username
             - name: DB_PASSWORD
-              value: "123456"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: db_password
             - name: USUARIOS_URL
-              value: "ms-usuarios:8001"
+              valueFrom:
+                configMapKeyRef:
+                  name: ms-cursos
+                  key: usuarios_url
