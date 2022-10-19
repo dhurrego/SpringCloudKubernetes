@@ -3,8 +3,10 @@ kind: Service
 metadata:
   name: ms-cursos
 spec:
-  selector:
-    app: ms-cursos
   ports:
     - port: 8002
+      protocol: TCP
+      targetPort: 8002
+  selector:
+    app: ms-cursos
   type: LoadBalancer
