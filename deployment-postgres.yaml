@@ -28,6 +28,5 @@ spec:
           imagePullPolicy: IfNotPresent
       volumes:
         - name: data-postgres
-          hostPath:
-            path: /var/lib/postgresql/data
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: postgres-pvc
