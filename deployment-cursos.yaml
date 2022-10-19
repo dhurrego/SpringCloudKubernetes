@@ -41,9 +41,9 @@ spec:
                   key: db_username
             - name: DB_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: ms-cursos
-                  key: db_password
+                  key: password
             - name: USUARIOS_URL
               valueFrom:
                 configMapKeyRef:
