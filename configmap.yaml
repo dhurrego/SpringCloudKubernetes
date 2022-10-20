@@ -8,9 +8,25 @@ data:
   db_database: ms_usuarios
   db_username: root
   cursos_url: ms-cursos:8002
+  ambiente: dev
   application.yaml: |-
     config:
       texto: Configurando ambiente por defecto
+    ---
+    spring:
+      config:
+        activate:
+          on-profile: dev
+    config:
+      texto: Configurando ambiente de desarrollo
+    ---
+    spring:
+      config:
+        activate:
+          on-profile: prod
+    config:
+      texto: Configurando ambiente de producción
+
 ---
 apiVersion: v1
 kind: ConfigMap
