@@ -9,6 +9,12 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: true
+  cloud:
+    kubernetes:
+      secrets:
+        enable-api: true
+      discovery:
+        all-namespaces: true
 
 server:
   port: ${PORT:8001}
@@ -20,6 +26,3 @@ logging:
     org:
       hibernate:
         SQL: debug
-
-ms-cursos:
-  url: ${CURSOS_URL:ms-cursos:8002}

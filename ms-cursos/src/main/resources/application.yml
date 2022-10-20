@@ -14,6 +14,12 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  cloud:
+    kubernetes:
+      secrets:
+        enable-api: true
+      discovery:
+        all-namespaces: true
 
 server:
   port: ${PORT:8002}
@@ -23,6 +29,3 @@ logging:
     org:
       hibernate:
         SQL: debug
-
-ms-usuarios:
-  url: ${USUARIOS_URL:ms-usuarios:8001}

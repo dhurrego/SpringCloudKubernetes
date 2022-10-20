@@ -15,7 +15,6 @@ spec:
       containers:
         - name: cursos
           image: dhurrego/cursos:latest
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8002
           env:
