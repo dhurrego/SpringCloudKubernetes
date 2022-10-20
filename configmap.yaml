@@ -8,6 +8,9 @@ data:
   db_database: ms_usuarios
   db_username: root
   cursos_url: ms-cursos:8002
+  application.yaml: |-
+    config:
+      texto: Configurando ambiente por defecto
 ---
 apiVersion: v1
 kind: ConfigMap

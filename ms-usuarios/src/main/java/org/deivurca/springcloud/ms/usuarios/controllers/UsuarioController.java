@@ -5,6 +5,7 @@ import org.deivurca.springcloud.ms.usuarios.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -22,16 +23,21 @@ public class UsuarioController {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private Environment environment;
+
     @GetMapping("/crash")
     public void crash() {
         ((ConfigurableApplicationContext) applicationContext).close();
     }
 
     @GetMapping
-    public ResponseEntity<Map<String, List<Usuario>>> listar() {
-        return ResponseEntity.ok(
-                Collections.singletonMap("usuarios", service.listarTodo())
-        );
+    public ResponseEntity<Map<String, Object>> listar() {
+        Map<String, Object> body = new HashMap<>();
+        body.put("usuarios", service.listarTodo());
+        body.put("podInfo", environment.getProperty("MY_POD_NAME").concat(": ").concat(environment.getProperty("MY_POD_IP")));
+        body.put("texto", environment.getProperty("config.texto"));
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping("/{id}")
